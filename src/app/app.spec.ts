@@ -1,10 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter, Router } from '@angular/router';
 import { App } from './app';
+import { routes } from './app.routes';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [provideRouter(routes)],
     }).compileComponents();
   });
 
@@ -14,10 +17,21 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render each routed page', async () => {
     const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
+    const router = TestBed.inject(Router);
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Feladat 0311');
+
+    for (const [path, heading] of [
+      ['/home', 'Feladat 0311'],
+      ['/about', 'Névjegy'],
+      ['/author', 'Szerző'],
+    ]) {
+      await router.navigateByUrl(path);
+      fixture.detectChanges();
+      await fixture.whenStable();
+      fixture.detectChanges();
+      expect(compiled.querySelector('h1')?.textContent).toContain(heading);
+    }
   });
 });
