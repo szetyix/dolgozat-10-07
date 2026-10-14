@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+
+.about-list {
+  display: grid;
+  gap: 12px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-list li {
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: #1e293b;
+  font-weight: 600;
+}

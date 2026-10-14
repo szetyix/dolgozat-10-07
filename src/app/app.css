@@ -67,56 +67,6 @@
   padding: clamp(48px, 9vw, 112px) 0;
 }
 
-.content-card {
-  width: min(100%, 720px);
-  margin: 0 auto;
-  padding: clamp(32px, 7vw, 64px);
-  border: 1px solid #e2e8f0;
-  border-radius: 24px;
-  background: #ffffff;
-  box-shadow: 0 24px 80px rgb(15 23 42 / 8%);
-}
-
-.content-card .eyebrow {
-  color: #4f46e5;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-}
-
-.content-card h1 {
-  margin: 16px 0;
-  color: #0f172a;
-  font-size: clamp(2.5rem, 8vw, 4rem);
-  letter-spacing: -0.06em;
-  line-height: 1;
-}
-
-.content-card p {
-  max-width: 42ch;
-  margin: 0;
-  color: #475569;
-  font-size: 1.125rem;
-  line-height: 1.7;
-}
-
-.status {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 32px;
-  color: #334155;
-  font-size: 0.9375rem;
-}
-
-.status-indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #16a34a;
-  box-shadow: 0 0 0 4px #dcfce7;
-}
-
 @media (max-width: 560px) {
   .site-header {
     align-items: flex-start;

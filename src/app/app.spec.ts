@@ -23,9 +23,9 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
 
     for (const [path, heading] of [
-      ['/home', 'Feladat 0311'],
+      ['/home', 'Rombusz területe'],
       ['/about', 'Névjegy'],
-      ['/author', 'Rombusz területe'],
+      ['/links', 'Linkek'],
     ]) {
       await router.navigateByUrl(path);
       fixture.detectChanges();
@@ -35,10 +35,37 @@ describe('App', () => {
     }
   });
 
-  it('should calculate the rhombus area from its diagonals', async () => {
+  it('should show the requested information on the about page', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
-    await router.navigateByUrl('/author');
+    await router.navigateByUrl('/about');
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.textContent).toContain('Nagy Szemere');
+    expect(compiled.textContent).toContain('SZOFT-I-N');
+    expect(compiled.textContent).toContain('Angular projekt');
+  });
+
+  it('should show both requested links on the links page', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/links');
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const links = compiled.querySelectorAll<HTMLAnchorElement>('.link-list a');
+    expect(links).toHaveLength(2);
+    expect(links[0].href).toBe(
+      'https://szit.hu/doku.php?id=oktatas:programozas:feladatok:altalanos#feladat_0311',
+    );
+    expect(links[1].href).toBe('https://www.w3schools.com/Angular/angular_first_app.asp');
+  });
+
+  it('should calculate the rhombus area on the home page', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/home');
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
@@ -63,7 +90,7 @@ describe('App', () => {
   it('should show validation errors when diagonals are missing', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
-    await router.navigateByUrl('/author');
+    await router.navigateByUrl('/home');
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
